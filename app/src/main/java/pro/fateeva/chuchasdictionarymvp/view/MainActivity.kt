@@ -1,7 +1,8 @@
-package pro.fateeva.chuchasdictionarymvp
+package pro.fateeva.chuchasdictionarymvp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import pro.fateeva.chuchasdictionarymvp.R
 import pro.fateeva.chuchasdictionarymvp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

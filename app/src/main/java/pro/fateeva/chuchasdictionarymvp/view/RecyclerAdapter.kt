@@ -1,4 +1,4 @@
-package pro.fateeva.chuchasdictionarymvp
+package pro.fateeva.chuchasdictionarymvp.view
 
 import android.view.LayoutInflater
 import android.view.View

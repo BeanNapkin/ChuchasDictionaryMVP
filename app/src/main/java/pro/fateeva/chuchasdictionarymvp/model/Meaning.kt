@@ -1,4 +1,4 @@
-package pro.fateeva.chuchasdictionarymvp
+package pro.fateeva.chuchasdictionarymvp.model
 
 import com.google.gson.annotations.SerializedName
 
