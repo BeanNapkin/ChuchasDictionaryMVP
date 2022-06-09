@@ -49,6 +49,7 @@ class ListOfWordsFragment : Fragment() {
 
         binding.recyclerview.adapter = adapter
         adapter.itemList = words
+
     }
 
     companion object {
