@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import pro.fateeva.chuchasdictionarymvp.AppState
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
+import pro.fateeva.chuchasdictionarymvp.model.AppState
 import pro.fateeva.chuchasdictionarymvp.R
 import pro.fateeva.chuchasdictionarymvp.databinding.FragmentListOfWordsBinding
 import pro.fateeva.chuchasdictionarymvp.databinding.ItemWordBinding
+import pro.fateeva.chuchasdictionarymvp.extensions.showLoader
 import pro.fateeva.chuchasdictionarymvp.model.Word
 import pro.fateeva.chuchasdictionarymvp.presenter.Presenter
 import pro.fateeva.chuchasdictionarymvp.presenter.PresenterImpl
@@ -29,8 +33,10 @@ class ListOfWordsFragment : BaseFragment<AppState>() {
         emptyList(),
         R.layout.item_word
     ) { word, _ ->
-        ItemWordBinding.bind(this).headerTextview.text = word.text
-        ItemWordBinding.bind(this).descriptionTextview.text = word.meanings?.first()?.translation?.translation
+        ItemWordBinding.bind(this).apply {
+            headerTextview.text = word.text
+            descriptionTextview.text = word.meanings?.first()?.translation?.translation
+        }
     }
 
     override fun createPresenter(): Presenter<AppState, FragmentView> {
@@ -49,14 +55,12 @@ class ListOfWordsFragment : BaseFragment<AppState>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setFragmentResultListener(SearchDialogFragment.fragmentResult) { _, bundle ->
+            presenter.getData(bundle.getString(SearchDialogFragment.wordResultKey) ?: "")
+        }
+
         binding.searchFab.setOnClickListener {
             val searchDialogFragment = SearchDialogFragment.newInstance()
-            searchDialogFragment.setOnSearchClickListener(object :
-                SearchDialogFragment.OnSearchClickListener {
-                override fun onClick(searchWord: String) {
-                    presenter.getData(searchWord)
-                }
-            })
             searchDialogFragment.show(
                 requireActivity().supportFragmentManager,
                 BOTTOM_SHEET_FRAGMENT_DIALOG_TAG
@@ -92,7 +96,7 @@ class ListOfWordsFragment : BaseFragment<AppState>() {
 
     private fun showViewError(error: String) {
         binding.recyclerview.visibility = View.GONE
-        binding.progressBarHorizontal.visibility = View.GONE
+        showLoader(false)
         binding.errorTextview.visibility = View.VISIBLE
         binding.errorTextview.text = error
     }
@@ -100,13 +104,12 @@ class ListOfWordsFragment : BaseFragment<AppState>() {
     private fun showViewSuccess() {
         binding.recyclerview.visibility = View.VISIBLE
         binding.errorTextview.visibility = View.GONE
-        binding.progressBarHorizontal.visibility = View.GONE
+        showLoader(false)
     }
 
     private fun showViewLoading() {
         binding.recyclerview.visibility = View.GONE
-        binding.progressBarHorizontal.visibility = View.VISIBLE
+        showLoader(true)
         binding.errorTextview.visibility = View.GONE
     }
-
 }

@@ -1,6 +1,6 @@
 package pro.fateeva.chuchasdictionarymvp.presenter
 
-import pro.fateeva.chuchasdictionarymvp.AppState
+import pro.fateeva.chuchasdictionarymvp.model.AppState
 import pro.fateeva.chuchasdictionarymvp.view.FragmentView
 
 interface Presenter<A: AppState, V: FragmentView> {

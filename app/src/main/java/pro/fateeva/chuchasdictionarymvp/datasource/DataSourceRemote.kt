@@ -1,7 +1,6 @@
 package pro.fateeva.chuchasdictionarymvp.datasource
 
 import io.reactivex.Observable
-import pro.fateeva.chuchasdictionarymvp.datasource.Retrofit
 import pro.fateeva.chuchasdictionarymvp.model.Word
 
 class DataSourceRemote(private val remoteProvider: Retrofit = Retrofit()) :

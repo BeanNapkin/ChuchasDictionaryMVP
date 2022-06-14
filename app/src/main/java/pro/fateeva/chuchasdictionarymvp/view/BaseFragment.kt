@@ -1,11 +1,13 @@
 package pro.fateeva.chuchasdictionarymvp.view
 
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import pro.fateeva.chuchasdictionarymvp.AppState
+import androidx.fragment.app.setFragmentResult
+import pro.fateeva.chuchasdictionarymvp.model.AppState
 import pro.fateeva.chuchasdictionarymvp.presenter.Presenter
 
-abstract class BaseFragment<A: AppState> : Fragment(), FragmentView {
+abstract class BaseFragment<A : AppState> : Fragment(), FragmentView {
     protected lateinit var presenter: Presenter<A, FragmentView>
 
     protected abstract fun createPresenter(): Presenter<A, FragmentView>

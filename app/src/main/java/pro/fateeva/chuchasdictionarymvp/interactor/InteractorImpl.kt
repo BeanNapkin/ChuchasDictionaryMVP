@@ -1,7 +1,7 @@
 package pro.fateeva.chuchasdictionarymvp.interactor
 
 import io.reactivex.Observable
-import pro.fateeva.chuchasdictionarymvp.AppState
+import pro.fateeva.chuchasdictionarymvp.model.AppState
 import pro.fateeva.chuchasdictionarymvp.model.Word
 import pro.fateeva.chuchasdictionarymvp.repository.Repository
 

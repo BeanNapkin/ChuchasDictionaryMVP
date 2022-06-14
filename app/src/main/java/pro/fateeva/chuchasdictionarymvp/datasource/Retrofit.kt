@@ -5,9 +5,6 @@ import io.reactivex.Observable
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import pro.fateeva.chuchasdictionarymvp.datasource.Api
-import pro.fateeva.chuchasdictionarymvp.datasource.BaseInterceptor
-import pro.fateeva.chuchasdictionarymvp.datasource.DataSource
 import pro.fateeva.chuchasdictionarymvp.model.Word
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

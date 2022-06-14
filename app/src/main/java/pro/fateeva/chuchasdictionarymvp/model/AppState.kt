@@ -1,6 +1,4 @@
-package pro.fateeva.chuchasdictionarymvp
-
-import pro.fateeva.chuchasdictionarymvp.model.Word
+package pro.fateeva.chuchasdictionarymvp.model
 
 sealed class AppState {
     data class Success(val data: List<Word>?) : AppState()

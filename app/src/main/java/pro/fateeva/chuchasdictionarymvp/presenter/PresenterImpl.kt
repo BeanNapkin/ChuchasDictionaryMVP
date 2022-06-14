@@ -2,12 +2,13 @@ package pro.fateeva.chuchasdictionarymvp.presenter
 
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
-import pro.fateeva.chuchasdictionarymvp.*
 import pro.fateeva.chuchasdictionarymvp.datasource.DataSourceRemote
 import pro.fateeva.chuchasdictionarymvp.interactor.InteractorImpl
+import pro.fateeva.chuchasdictionarymvp.model.AppState
 import pro.fateeva.chuchasdictionarymvp.repository.RepositoryImpl
 import pro.fateeva.chuchasdictionarymvp.rx.SchedulerProvider
 import pro.fateeva.chuchasdictionarymvp.view.FragmentView
+import java.lang.RuntimeException
 
 class PresenterImpl<A: AppState, V: FragmentView>(
     private val interactor: InteractorImpl = InteractorImpl(RepositoryImpl(DataSourceRemote())),
