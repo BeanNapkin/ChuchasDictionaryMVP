@@ -50,4 +50,9 @@ class SearchDialogFragment : BottomSheetDialogFragment() {
         val wordResultKey = "word"
         fun newInstance() = SearchDialogFragment()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

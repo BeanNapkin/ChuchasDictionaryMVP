@@ -18,9 +18,9 @@ import pro.fateeva.chuchasdictionarymvp.presenter.PresenterImpl
 
 class ListOfWordsFragment : BaseFragment<AppState>() {
 
-    private lateinit var _binding: FragmentListOfWordsBinding
+    private var _binding: FragmentListOfWordsBinding? = null
     val binding: FragmentListOfWordsBinding
-        get() = _binding
+        get() = _binding!!
 
 //    var translation: Translation = Translation("Медведь")
 //    var translation2: Translation = Translation("Выносить")
@@ -111,5 +111,10 @@ class ListOfWordsFragment : BaseFragment<AppState>() {
         binding.recyclerview.visibility = View.GONE
         showLoader(true)
         binding.errorTextview.visibility = View.GONE
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
