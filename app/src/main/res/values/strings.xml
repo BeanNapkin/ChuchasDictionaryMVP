@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ChuchasDictionaryMVP</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error">Ошибка</string>
+    <string name="translation_on_russian">Перевод на русский</string>
+    <string name="word">Слово</string>
+    <string name="search">Поиск</string>
+    <string name="input_word">Введите слово</string>
+</resources>
