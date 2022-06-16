@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import pro.fateeva.chuchasdictionarymvp.R
 import pro.fateeva.chuchasdictionarymvp.databinding.ActivityMainBinding
+import pro.fateeva.chuchasdictionarymvp.view.listofwords.ListOfWordsFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

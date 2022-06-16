@@ -1,31 +1,30 @@
-package pro.fateeva.chuchasdictionarymvp.view
+package pro.fateeva.chuchasdictionarymvp.view.listofwords
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.ViewModelProvider
 import pro.fateeva.chuchasdictionarymvp.model.AppState
 import pro.fateeva.chuchasdictionarymvp.R
 import pro.fateeva.chuchasdictionarymvp.databinding.FragmentListOfWordsBinding
 import pro.fateeva.chuchasdictionarymvp.databinding.ItemWordBinding
 import pro.fateeva.chuchasdictionarymvp.extensions.showLoader
 import pro.fateeva.chuchasdictionarymvp.model.Word
-import pro.fateeva.chuchasdictionarymvp.presenter.Presenter
-import pro.fateeva.chuchasdictionarymvp.presenter.PresenterImpl
+import pro.fateeva.chuchasdictionarymvp.view.RecyclerAdapter
+import pro.fateeva.chuchasdictionarymvp.view.SearchDialogFragment
 
-class ListOfWordsFragment : BaseFragment<AppState>() {
+class ListOfWordsFragment : Fragment() {
 
     private var _binding: FragmentListOfWordsBinding? = null
     val binding: FragmentListOfWordsBinding
         get() = _binding!!
 
-//    var translation: Translation = Translation("Медведь")
-//    var translation2: Translation = Translation("Выносить")
-//    var meanings: List<Translation> = listOf(translation, translation2)
-//    var words: List<Word> = listOf(Word("Bear", meanings))
+    private val viewModel: ListOfWordsViewModel by lazy {
+        ViewModelProvider(this).get(ListOfWordsViewModel::class.java)
+    }
 
     private val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG = "BOTTOM_SHEET_FRAGMENT_DIALOG_TAG"
 
@@ -37,10 +36,6 @@ class ListOfWordsFragment : BaseFragment<AppState>() {
             headerTextview.text = word.text
             descriptionTextview.text = word.meanings?.first()?.translation?.translation
         }
-    }
-
-    override fun createPresenter(): Presenter<AppState, FragmentView> {
-        return PresenterImpl()
     }
 
     override fun onCreateView(
@@ -56,7 +51,11 @@ class ListOfWordsFragment : BaseFragment<AppState>() {
         super.onViewCreated(view, savedInstanceState)
 
         setFragmentResultListener(SearchDialogFragment.fragmentResult) { _, bundle ->
-            presenter.getData(bundle.getString(SearchDialogFragment.wordResultKey) ?: "")
+            viewModel.getData(bundle.getString(SearchDialogFragment.wordResultKey) ?: "")
+        }
+
+        viewModel.wordLiveData.observe(viewLifecycleOwner) {
+            renderData(it)
         }
 
         binding.searchFab.setOnClickListener {
@@ -74,7 +73,7 @@ class ListOfWordsFragment : BaseFragment<AppState>() {
         fun newInstance() = ListOfWordsFragment()
     }
 
-    override fun renderData(appState: AppState) {
+    private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Success -> {
                 val word = appState.data
