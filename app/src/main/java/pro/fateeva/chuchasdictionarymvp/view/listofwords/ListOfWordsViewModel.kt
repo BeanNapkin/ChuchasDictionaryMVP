@@ -6,15 +6,12 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
-import pro.fateeva.chuchasdictionarymvp.usecase.ListOfWordsUseCase
 import pro.fateeva.chuchasdictionarymvp.model.AppState
 import pro.fateeva.chuchasdictionarymvp.rx.SchedulerProvider
-import javax.inject.Inject
+import pro.fateeva.chuchasdictionarymvp.usecase.ListOfWordsUseCase
 
-class ListOfWordsViewModel(private val state: SavedStateHandle) : ViewModel() {
+class ListOfWordsViewModel(private val state: SavedStateHandle, private val useCase: ListOfWordsUseCase) : ViewModel() {
 
-    @Inject
-    lateinit var useCase: ListOfWordsUseCase
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
     private val schedulerProvider: SchedulerProvider = SchedulerProvider()
 
