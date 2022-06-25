@@ -1,21 +1,17 @@
 package pro.fateeva.chuchasdictionarymvp.view.listofwords
 
-import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.SavedStateViewModelFactory
-import androidx.lifecycle.ViewModelProvider
-import pro.fateeva.chuchasdictionarymvp.model.AppState
+import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import pro.fateeva.chuchasdictionarymvp.R
-import pro.fateeva.chuchasdictionarymvp.app
 import pro.fateeva.chuchasdictionarymvp.databinding.FragmentListOfWordsBinding
 import pro.fateeva.chuchasdictionarymvp.databinding.ItemWordBinding
 import pro.fateeva.chuchasdictionarymvp.extensions.showLoader
+import pro.fateeva.chuchasdictionarymvp.model.AppState
 import pro.fateeva.chuchasdictionarymvp.model.Word
 import pro.fateeva.chuchasdictionarymvp.view.RecyclerAdapter
 import pro.fateeva.chuchasdictionarymvp.view.SearchDialogFragment
@@ -26,11 +22,7 @@ class ListOfWordsFragment : Fragment() {
     val binding: FragmentListOfWordsBinding
         get() = _binding!!
 
-    private val viewModel: ListOfWordsViewModel by lazy {
-        ViewModelProvider(this).get(ListOfWordsViewModel::class.java).also {
-            requireContext().app.appDependenciesComponent.inject(it)
-        }
-    }
+    private val viewModel: ListOfWordsViewModel by stateViewModel()
 
     private val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG = "BOTTOM_SHEET_FRAGMENT_DIALOG_TAG"
 

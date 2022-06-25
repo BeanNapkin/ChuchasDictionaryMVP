@@ -1,6 +1,5 @@
 package pro.fateeva.chuchasdictionarymvp.datasource
 
-import io.reactivex.Observable
 import pro.fateeva.chuchasdictionarymvp.model.Word
 import retrofit2.Retrofit
 
@@ -8,7 +7,7 @@ class DataSourceRemote(
     private val retrofit: Retrofit
 ) : DataSource<List<Word>> {
 
-    override fun getData(word: String): Observable<List<Word>> {
+    override suspend fun getData(word: String): List<Word> {
         return getService().search(word)
     }
 
