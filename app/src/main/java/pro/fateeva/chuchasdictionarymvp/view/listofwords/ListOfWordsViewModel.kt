@@ -17,19 +17,19 @@ class ListOfWordsViewModel(
 
     val wordLiveData: LiveData<AppState> = state.getLiveData("word")
 
+    private val scope = CoroutineScope(Dispatchers.IO)
+
     init {
         Log.d("ViewModel", "View model is created")
     }
 
-    fun getData(word: String) = CoroutineScope(Dispatchers.IO).apply {
-        launch {
-            val liveData = state.getLiveData<AppState>("word")
-            liveData.postValue(AppState.Loading(0))
-            try {
-                liveData.postValue(useCase.getData(word))
-            } catch (e: Throwable) {
-                liveData.postValue(AppState.Error(e))
-            }
+    fun getData(word: String) = scope.launch {
+        val liveData = state.getLiveData<AppState>("word")
+        liveData.postValue(AppState.Loading(0))
+        try {
+            liveData.postValue(useCase.getData(word))
+        } catch (e: Throwable) {
+            liveData.postValue(AppState.Error(e))
         }
     }
 }
