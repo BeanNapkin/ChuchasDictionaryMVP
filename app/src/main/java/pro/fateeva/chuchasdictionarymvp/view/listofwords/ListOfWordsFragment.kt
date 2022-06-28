@@ -2,6 +2,7 @@ package pro.fateeva.chuchasdictionarymvp.view.listofwords
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.SurfaceControl
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import pro.fateeva.chuchasdictionarymvp.model.AppState
 import pro.fateeva.chuchasdictionarymvp.model.Word
 import pro.fateeva.chuchasdictionarymvp.view.RecyclerAdapter
 import pro.fateeva.chuchasdictionarymvp.view.SearchDialogFragment
+import pro.fateeva.chuchasdictionarymvp.view.WordDetailsFragment
 
 class ListOfWordsFragment : Fragment() {
 
@@ -33,6 +35,10 @@ class ListOfWordsFragment : Fragment() {
         ItemWordBinding.bind(this).apply {
             headerTextview.text = word.text
             descriptionTextview.text = word.meanings?.first()?.translation?.translation
+            setOnClickListener {
+                WordDetailsFragment.newInstance(word)
+                    .show(requireActivity().supportFragmentManager, WordDetailsFragment.TAG)
+            }
         }
     }
 
