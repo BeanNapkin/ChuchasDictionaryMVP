@@ -7,4 +7,5 @@
     <string name="word">Слово</string>
     <string name="search">Поиск</string>
     <string name="input_word">Введите слово</string>
+    <string name="history">History</string>
 </resources>
