@@ -1,9 +1,7 @@
 package pro.fateeva.chuchasdictionarymvp.view.listofwords
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
@@ -13,8 +11,10 @@ import pro.fateeva.chuchasdictionarymvp.databinding.ItemWordBinding
 import pro.fateeva.chuchasdictionarymvp.extensions.showLoader
 import pro.fateeva.chuchasdictionarymvp.model.AppState
 import pro.fateeva.chuchasdictionarymvp.model.Word
+import pro.fateeva.chuchasdictionarymvp.view.history.HistoryFragment
 import pro.fateeva.chuchasdictionarymvp.view.RecyclerAdapter
 import pro.fateeva.chuchasdictionarymvp.view.SearchDialogFragment
+import pro.fateeva.chuchasdictionarymvp.view.WordDetailsFragment
 
 class ListOfWordsFragment : Fragment() {
 
@@ -33,7 +33,27 @@ class ListOfWordsFragment : Fragment() {
         ItemWordBinding.bind(this).apply {
             headerTextview.text = word.text
             descriptionTextview.text = word.meanings?.first()?.translation?.translation
+            setOnClickListener {
+                viewModel.saveWordToHistory(word)
+                WordDetailsFragment.newInstance(word)
+                    .show(requireActivity().supportFragmentManager, WordDetailsFragment.TAG)
+            }
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        HistoryFragment.newInstance().show(requireActivity().supportFragmentManager, HistoryFragment.TAG)
+        return true
     }
 
     override fun onCreateView(
