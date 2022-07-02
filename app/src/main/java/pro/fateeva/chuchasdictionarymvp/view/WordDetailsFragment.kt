@@ -58,6 +58,11 @@ class WordDetailsFragment : DialogFragment() {
             .into(binding.image)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     companion object {
         const val TAG = "WordDetailsFragment"
         const val WORD_ARG = "WORD_ARG"
