@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 sealed class AppState : Parcelable {
     @Parcelize
-    data class Success(val data: List<Word>?) : AppState()
+    data class Success(val data: List<model.Word>?) : AppState()
     @Parcelize
     data class Error(val error: Throwable) : AppState()
     @Parcelize

@@ -1,4 +1,4 @@
-package pro.fateeva.chuchasdictionarymvp.datasource
+package datasource
 
 import pro.fateeva.chuchasdictionarymvp.model.Word
 import retrofit2.http.GET

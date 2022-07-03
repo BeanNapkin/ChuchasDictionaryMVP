@@ -1,4 +1,4 @@
-package pro.fateeva.chuchasdictionarymvp.datasource
+package datasource
 
 import okhttp3.Interceptor
 import okhttp3.Response

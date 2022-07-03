@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import pro.fateeva.chuchasdictionarymvp.usecase.HistoryUseCase
 import pro.fateeva.chuchasdictionarymvp.room.WordEntity
 import pro.fateeva.chuchasdictionarymvp.model.AppState
-import pro.fateeva.chuchasdictionarymvp.model.Word
+import model.Word
 import pro.fateeva.chuchasdictionarymvp.usecase.SearchWordUseCase
 
 class ListOfWordsViewModel(
@@ -37,7 +37,7 @@ class ListOfWordsViewModel(
         }
     }
 
-    fun saveWordToHistory(word: Word) {
+    fun saveWordToHistory(word: model.Word) {
         val wordEntity = WordEntity(
             id = 0,
             word = word.text,

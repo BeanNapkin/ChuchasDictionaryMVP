@@ -54,14 +54,8 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.13.0")
 
     //Koin
-    implementation("io.insert-koin:koin-core:3.2.0")
-    implementation("io.insert-koin:koin-android:3.2.0")
-
-    //Retrofit 2
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
-    implementation("com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0")
+    implementation("io.insert-koin:koin-core:${Versions.koin}")
+    implementation("io.insert-koin:koin-android:${Versions.koin}")
 
     implementation("androidx.fragment:fragment-ktx:1.5.0")
     implementation("androidx.core:core-ktx:1.8.0")

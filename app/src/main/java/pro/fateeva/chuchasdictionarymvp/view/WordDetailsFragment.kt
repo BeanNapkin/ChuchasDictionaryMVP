@@ -9,11 +9,11 @@ import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import pro.fateeva.chuchasdictionarymvp.room.WordEntity
 import pro.fateeva.chuchasdictionarymvp.databinding.FragmentWordDetailsBinding
-import pro.fateeva.chuchasdictionarymvp.model.Word
+import model.Word
 
 class WordDetailsFragment : DialogFragment() {
 
-    private val word: Word?
+    private val word: model.Word?
         get() = requireArguments().getParcelable(WORD_ARG)
 
     private val wordEntity: WordEntity?
@@ -68,7 +68,7 @@ class WordDetailsFragment : DialogFragment() {
         const val WORD_ARG = "WORD_ARG"
         const val WORD_ENTITY_ARG = "WORD_ENTITY_ARG"
 
-        fun newInstance(word: Word) = WordDetailsFragment().apply {
+        fun newInstance(word: model.Word) = WordDetailsFragment().apply {
             arguments = bundleOf(
                 WORD_ARG to word
             )
