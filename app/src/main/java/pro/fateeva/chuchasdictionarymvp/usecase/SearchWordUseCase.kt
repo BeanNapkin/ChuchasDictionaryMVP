@@ -1,13 +1,22 @@
 package pro.fateeva.chuchasdictionarymvp.usecase
 
+import model.WordDTO
 import pro.fateeva.chuchasdictionarymvp.model.AppState
-import model.Word
 import pro.fateeva.chuchasdictionarymvp.repository.Repository
+import pro.fateeva.chuchasdictionarymvp.room.WordEntity
 
 class SearchWordUseCase(
-    private val remoteRepository: Repository<List<model.Word>>
+    private val remoteRepository: Repository<List<WordDTO>>
 ) {
     suspend fun searchWord(word: String): AppState {
-        return remoteRepository.getData(word).let { AppState.Success(it) }
+        return remoteRepository.getData(word).let { wordDTOList -> AppState.Success(wordDTOList.map {
+            WordEntity(
+                id = 0,
+                word = it.text,
+                translation = it.meanings?.first()?.translation?.translation,
+                imageUrl = it.meanings?.first()?.imageUrl
+            )
+        })
+        }
     }
 }

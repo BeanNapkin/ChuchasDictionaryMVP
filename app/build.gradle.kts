@@ -48,6 +48,7 @@ android {
 dependencies {
     //Room
     implementation("androidx.room:room-runtime:2.4.2")
+    implementation(project(mapOf("path" to ":network")))
     kapt("androidx.room:room-compiler:2.4.2")
 
     //Glide

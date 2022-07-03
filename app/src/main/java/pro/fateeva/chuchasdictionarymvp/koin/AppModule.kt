@@ -1,7 +1,7 @@
 package pro.fateeva.chuchasdictionarymvp.koin
 
 import androidx.room.Room
-import model.Word
+import model.WordDTO
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -22,7 +22,7 @@ object AppModule {
 
         single<HistoryUseCase>{ HistoryUseCase(get()) }
 
-        single<Repository<List<model.Word>>> { RepositoryImpl(get()) }
+        single<Repository<List<WordDTO>>> { RepositoryImpl(get()) }
 
         single<WordDataBase>{
             Room.databaseBuilder(androidApplication().app, WordDataBase::class.java, "word_database").build()
