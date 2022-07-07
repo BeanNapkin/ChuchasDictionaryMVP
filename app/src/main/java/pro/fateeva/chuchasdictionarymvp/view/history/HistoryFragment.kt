@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import org.koin.androidx.scope.fragmentScope
-import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import pro.fateeva.chuchasdictionarymvp.R
 import pro.fateeva.chuchasdictionarymvp.room.WordEntity
 import pro.fateeva.chuchasdictionarymvp.databinding.FragmentHistoryBinding
