@@ -1,11 +1,11 @@
 package pro.fateeva.chuchasdictionarymvp.repository
 
-import pro.fateeva.chuchasdictionarymvp.datasource.DataSource
-import pro.fateeva.chuchasdictionarymvp.model.Word
+import datasource.DataSource
+import model.WordDTO
 
-class RepositoryImpl(private val dataSource: DataSource<List<Word>>) : Repository<List<Word>> {
+class RepositoryImpl(private val dataSource: DataSource<List<WordDTO>>) : Repository<List<WordDTO>> {
 
-    override suspend fun getData(word: String): List<Word> {
+    override suspend fun getData(word: String): List<WordDTO> {
         return dataSource.getData(word)
     }
 }

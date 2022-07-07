@@ -1,11 +1,8 @@
-package pro.fateeva.chuchasdictionarymvp.model
+package model
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
-class Word (
+class WordDTO (
     @field:SerializedName("text") val text: String?,
     @field:SerializedName("meanings") val meanings: List<Meaning>?
-) : Parcelable
+)

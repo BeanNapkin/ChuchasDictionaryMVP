@@ -1,4 +1,4 @@
-package pro.fateeva.chuchasdictionarymvp.datasource
+package datasource
 
 interface DataSource<T> {
 

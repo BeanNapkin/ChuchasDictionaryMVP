@@ -1,13 +1,13 @@
-package pro.fateeva.chuchasdictionarymvp.datasource
+package datasource
 
-import pro.fateeva.chuchasdictionarymvp.model.Word
+import model.WordDTO
 import retrofit2.Retrofit
 
 class DataSourceRemote(
     private val retrofit: Retrofit
-) : DataSource<List<Word>> {
+) : DataSource<List<WordDTO>> {
 
-    override suspend fun getData(word: String): List<Word> {
+    override suspend fun getData(word: String): List<WordDTO> {
         return getService().search(word)
     }
 

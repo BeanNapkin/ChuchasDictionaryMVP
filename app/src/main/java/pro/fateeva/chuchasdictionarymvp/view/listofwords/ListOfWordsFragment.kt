@@ -10,11 +10,11 @@ import pro.fateeva.chuchasdictionarymvp.databinding.FragmentListOfWordsBinding
 import pro.fateeva.chuchasdictionarymvp.databinding.ItemWordBinding
 import pro.fateeva.chuchasdictionarymvp.extensions.showLoader
 import pro.fateeva.chuchasdictionarymvp.model.AppState
-import pro.fateeva.chuchasdictionarymvp.model.Word
-import pro.fateeva.chuchasdictionarymvp.view.history.HistoryFragment
+import pro.fateeva.chuchasdictionarymvp.room.WordEntity
 import pro.fateeva.chuchasdictionarymvp.view.RecyclerAdapter
 import pro.fateeva.chuchasdictionarymvp.view.SearchDialogFragment
 import pro.fateeva.chuchasdictionarymvp.view.WordDetailsFragment
+import pro.fateeva.chuchasdictionarymvp.view.history.HistoryFragment
 
 class ListOfWordsFragment : Fragment() {
 
@@ -26,13 +26,13 @@ class ListOfWordsFragment : Fragment() {
 
     private val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG = "BOTTOM_SHEET_FRAGMENT_DIALOG_TAG"
 
-    val adapter = RecyclerAdapter<Word>(
+    val adapter = RecyclerAdapter<WordEntity>(
         emptyList(),
         R.layout.item_word
     ) { word, _ ->
         ItemWordBinding.bind(this).apply {
-            headerTextview.text = word.text
-            descriptionTextview.text = word.meanings?.first()?.translation?.translation
+            headerTextview.text = word.word
+            descriptionTextview.text = word.translation
             setOnClickListener {
                 viewModel.saveWordToHistory(word)
                 WordDetailsFragment.newInstance(word)
