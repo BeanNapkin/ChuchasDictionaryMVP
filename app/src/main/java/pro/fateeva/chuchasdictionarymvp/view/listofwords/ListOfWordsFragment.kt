@@ -1,10 +1,21 @@
 package pro.fateeva.chuchasdictionarymvp.view.listofwords
 
+import android.os.Build.ID
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
+import org.koin.android.ext.android.getKoin
+import org.koin.android.ext.android.inject
+import org.koin.androidx.scope.ScopeFragment
+import org.koin.androidx.scope.currentScope
+import org.koin.androidx.scope.fragmentScope
+import org.koin.androidx.scope.scopeActivity
+import org.koin.androidx.viewmodel.ext.android.getViewModelFactory
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
+import org.koin.androidx.viewmodel.scope.emptyState
+import org.koin.core.parameter.parametersOf
+import org.koin.core.qualifier.named
 import pro.fateeva.chuchasdictionarymvp.R
 import pro.fateeva.chuchasdictionarymvp.databinding.FragmentListOfWordsBinding
 import pro.fateeva.chuchasdictionarymvp.databinding.ItemWordBinding
@@ -16,13 +27,13 @@ import pro.fateeva.chuchasdictionarymvp.view.SearchDialogFragment
 import pro.fateeva.chuchasdictionarymvp.view.WordDetailsFragment
 import pro.fateeva.chuchasdictionarymvp.view.history.HistoryFragment
 
-class ListOfWordsFragment : Fragment() {
+class ListOfWordsFragment : ScopeFragment() {
 
     private var _binding: FragmentListOfWordsBinding? = null
     val binding: FragmentListOfWordsBinding
         get() = _binding!!
 
-    private val viewModel: ListOfWordsViewModel by stateViewModel()
+    private val viewModel: ListOfWordsViewModel by stateViewModel(state = emptyState())
 
     private val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG = "BOTTOM_SHEET_FRAGMENT_DIALOG_TAG"
 
@@ -133,5 +144,6 @@ class ListOfWordsFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        scope.close()
     }
 }

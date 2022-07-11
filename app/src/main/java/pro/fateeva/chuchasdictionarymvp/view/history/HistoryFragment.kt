@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import org.koin.androidx.viewmodel.ext.android.stateViewModel
+import org.koin.androidx.scope.fragmentScope
 import pro.fateeva.chuchasdictionarymvp.R
 import pro.fateeva.chuchasdictionarymvp.room.WordEntity
 import pro.fateeva.chuchasdictionarymvp.databinding.FragmentHistoryBinding
@@ -19,7 +19,9 @@ class HistoryFragment : DialogFragment() {
     val binding: FragmentHistoryBinding
         get() = _binding!!
 
-    private val viewModel: HistoryViewModel by stateViewModel()
+    private val scope by fragmentScope()
+
+    private val viewModel: HistoryViewModel by scope.inject()
 
     val adapter = RecyclerAdapter<WordEntity>(
         emptyList(),
@@ -63,5 +65,11 @@ class HistoryFragment : DialogFragment() {
     companion object {
         const val TAG = "HistoryFragment"
         fun newInstance() = HistoryFragment()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+        scope.close()
     }
 }
