@@ -58,6 +58,9 @@ dependencies {
     implementation("io.insert-koin:koin-core:${Versions.koin}")
     implementation("io.insert-koin:koin-android:${Versions.koin}")
 
+    //Splashscreen
+    implementation("androidx.core:core-splashscreen:1.0.0-rc01")
+
     implementation("androidx.fragment:fragment-ktx:1.5.0")
     implementation("androidx.core:core-ktx:1.8.0")
     implementation("androidx.appcompat:appcompat:1.4.2")
