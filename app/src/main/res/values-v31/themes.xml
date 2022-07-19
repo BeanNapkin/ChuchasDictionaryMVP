@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.NewSplash" parent="Theme.SplashScreen">
+        <item name="postSplashScreenTheme">@style/Theme.ChuchasDictionaryMVP</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/chucha3</item>
+        <item name="windowSplashScreenBackground">#FFD740</item>
+    </style>
+</resources>
