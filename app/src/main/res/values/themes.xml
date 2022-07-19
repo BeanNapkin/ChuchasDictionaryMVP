@@ -14,5 +14,5 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.NewSlash" parent="Theme.ChuchasDictionaryMVP"/>
+    <style name="Theme.NewSplash" parent="Theme.ChuchasDictionaryMVP"/>
 </resources>
